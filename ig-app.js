@@ -57,30 +57,11 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
         downloadCanvas(this, 'resultCanvas', 'cover-freelance.png');
     };
 
-    // $scope.makeCover = function(){
-    //     $scope.loadingText = "กำลังแชร์รูปภาพ และ ส่งคุณไปยังหน้า Facebook";
-    //     $timeout(function(){Facebook.api('me/albums?fields=name&limit=100',function(res){
-    //         angular.forEach(res.data,function(item){
-    //             if (item.name == 'quiz@gth Photos') {
-    //                 profileAlbumId = item.id;
-    //                 Facebook.api(item.id+'/photos?fields=images,link',function(res){
-    //                     var targetImage = res.data[0].id;
-
-    //                     window.location = 'https://www.facebook.com/profile.php?preview_cover=' + targetImage;
-    //                     $scope.isLoading = false;
-    //                 });
-    //             }
-    //         });
-    //     });},1000)
-    // };
-
     $scope.redraw = function(index){
 
-        // setDimension();
+
          var shiftY = 0;
-        // if($scope.indexOfCover == 1){
-        //     shiftY = +5;
-        // }
+
           var centerPos = {x:coverSize.x/2,y:coverSize.y/2 + shiftY };
 
 
@@ -91,47 +72,15 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
             imageObj.width = 612;
             imageObj.height = 612;
             ctx.drawImage(imageObj,0,0);
-            // var stage = new createjs.Stage("resultCanvas");
-            // var bitmap = new createjs.Bitmap(imageObj);
-            // stage.addChild(bitmap);
-            // stage.update();
 
          //ctx.clearRect(0, 0, c.width, c.height);
          //ctx.rect(0,0,c.width,c.height);
-        // background draw
 
 
          ctx.fillStyle =  coversProperty[$scope.indexOfCover].primaryColor;
          ctx.textAlign = 'center';
          ctx.lineWidth = 1;
 
-/*
-         var text = text.split("").join(String.fromCharCode(8202)+String.fromCharCode(8202)+String.fromCharCode(8202));
-
-         var sara = [
-             'ั','ื','่'  ,'ุ' ,'ู'  , 'ี'  ,'้' , '๊'  ,  'ิ'
-             ,'็' ,'๋'
-         ];
-         var processTxt = '';
-         for (var ch = 0 ; ch < text.split("").length ; ch++){
-             var chara = text.split("")[ch];
-             var addSpace = true;
-             for(var i = 0;i < sara.length;i++){
-                 if(sara[i] == chara){
-                     addSpace = false
-                 }
-             }
-             if(addSpace){
-
-                 processTxt =  processTxt + String.fromCharCode(8202) + String.fromCharCode(8202) + chara;
-
-
-             }else{
-                 processTxt = processTxt + chara;
-             }
-         }
-         text = processTxt;
-*/
          ctx.font = "normal 96px MAX_PINJOHN";
          if($scope.indexOfCover == 1){
              ctx.font = "normal 106px MAX_PINJOHN";
@@ -159,47 +108,7 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
                  ctx.fillText(text, centerPos.x, centerPos.y - 30 );
              }
          }
-        //ctx.strokeText(text, centerPos.x, centerPos.y - 32);
-
-
-
-        // // Draw Text corner frame
-        // var leftSizeText = (coverSize.x/2 - textWidth/2 ) - 30;
-        // var rightSizeText = (coverSize.x/2 + textWidth/2 ) + 30;
-        // var lineStartY;
-        // var lineHeight = 20;
-        // ctx.lineWidth = 1.5;
-        // ctx.fillStyle = coversProperty[$scope.indexOfCover].background;/**/
-
-        // if($scope.indexOfCover == 0){
-        //     ctx.strokeStyle = coversProperty[$scope.indexOfCover].focusFrameColor;
-        //     lineStartY = centerPos.y - 30;
-        //     ctx.beginPath();
-        //     ctx.moveTo(leftSizeText,lineStartY);
-        //     ctx.lineTo(leftSizeText,lineStartY + lineHeight);
-        //     ctx.lineTo(leftSizeText + lineHeight,lineStartY + lineHeight);
-        //     ctx.stroke();
-        //     lineStartY = centerPos.y - 80;
-        //     ctx.beginPath();
-        //     ctx.moveTo(leftSizeText,lineStartY);
-        //     ctx.lineTo(leftSizeText,lineStartY - lineHeight);
-        //     ctx.lineTo(leftSizeText + lineHeight,lineStartY - lineHeight);
-        //     ctx.stroke();
-        //     lineStartY = centerPos.y - 80;
-        //     ctx.beginPath();
-        //     ctx.moveTo(rightSizeText,lineStartY);
-        //     ctx.lineTo(rightSizeText,lineStartY - lineHeight);
-        //     ctx.lineTo(rightSizeText - lineHeight,lineStartY - lineHeight);
-        //     ctx.stroke();
-        //     lineStartY = centerPos.y - 30;
-        //     ctx.beginPath();
-        //     ctx.moveTo(rightSizeText,lineStartY);
-        //     ctx.lineTo(rightSizeText,lineStartY + lineHeight);
-        //     ctx.lineTo(rightSizeText - lineHeight,lineStartY + lineHeight);
-        //     ctx.stroke();
-        // }
-
-        // Draw black label เฮ้อ อยากกินเหล้าจุง
+        
          ctx.font = "normal 42px MAX_PINJOHN";
          var subText = $scope.result.subtitle;
          var subtextWidth = (ctx.measureText(subText).width);
@@ -210,74 +119,6 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
          ctx.fill();
          ctx.fillStyle = coversProperty[$scope.indexOfCover].secondaryColor;
          ctx.fillText(subText, centerPos.x, centerPos.y + 40);
-
-        // Draw Square
-
-        // if($scope.indexOfCover == 1){
-        //     ctx.drawImage(mouseCursor,((centerPos.x + subtextWidth/2) - 20),centerPos.y - 5 + rectHeight + 2,18,28);
-
-
-        //     var recs =[
-        //         {
-        //             x:(centerPos.x - subtextWidth/2) - 22,
-        //             y:centerPos.y + 2,
-        //             w:5,
-        //             h:5
-        //         },
-        //         {
-        //             x:(centerPos.x),
-        //             y:centerPos.y + 2,
-        //             w:5,
-        //             h:5
-        //         },
-        //         {
-        //             x:(centerPos.x + subtextWidth/2) + 18,
-        //             y:centerPos.y + 2,
-        //             w:5,
-        //             h:5
-        //         },
-        //         {
-        //             x:(centerPos.x - subtextWidth/2) - 22,
-        //             y:centerPos.y + rectHeight + 2,
-        //             w:5,
-        //             h:5
-        //         },
-        //         {
-        //             x:(centerPos.x),
-        //             y:centerPos.y + rectHeight + 2,
-        //             w:5,
-        //             h:5
-        //         },
-        //         {
-        //             x:(centerPos.x + subtextWidth/2) + 18,
-        //             y:centerPos.y + rectHeight + 2,
-        //             w:5,
-        //             h:5
-        //         }
-        //     ];
-
-        //     angular.forEach(recs,function(rec){
-        //         ctx.beginPath();
-        //         ctx.rect(rec.x,rec.y,rec.w,rec.h);
-        //         ctx.strokeStyle = coversProperty[$scope.indexOfCover].secondaryColor;
-        //         ctx.lineWidth = 1;
-        //         ctx.strokeRect(rec.x,rec.y,rec.w,rec.h);
-        //         ctx.fillStyle = coversProperty[$scope.indexOfCover].primaryColor;
-        //         ctx.fill();
-        //     });
-
-        // }
-
-        // ctx.font = "normal 32px MAX_PINJOHN";
-        // var tagText = $scope.result.tagText;
-        // var tagTextWidth = (ctx.measureText(tagText).width);
-        // ctx.fillStyle = coversProperty[$scope.indexOfCover].primaryColor;
-        // ctx.fillText(tagText, centerPos.x, centerPos.y + rectHeight + 38);
-        // ctx.fillStyle ="rgba(0, 0, 0, 0.4)";
-        // ctx.font = "normal 8px thaisans_neueregular";
-        // ctx.textAlign = 'right';
-        // ctx.fillText('#FreelanceTheMovie',coverSize.x-5,coverSize.y-15);
-        // ctx.fillText('http://freelancethemovie.com/facebookcover',coverSize.x-5,coverSize.y-5);
 
         var data = c.toDataURL('image/png');
         var image = new Image();
