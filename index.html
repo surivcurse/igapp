@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="profileApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <title></title>
+
+  <link rel="stylesheet" href="bower_components/uikit/css/uikit.gradient.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  <script src="bower_components/uikit/js/uikit.min.js"></script>
+
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-64600231-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script>
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+  </script>
+
+  <style>
+    @font-face {
+      font-family: MAX_PINJOHN;
+      src: url('MAX_PINJOHN.ttf');
+    }
+  </style>
+
+</head>
+
+
+<body >
+
+  <div id="content_container" ng-controller="igController" ng-init="mock = 0">
+    <div class="uk-grid">
+      <div class="uk-width-large-1-3 uk-width-medium-1-3 uk-width-small-1-3 uk-width-1-3 uk-container-center">
+        <canvas id="resultCanvas" style="display:none;"></canvas>
+        <div style="margin-bottom:30px;text-align:center">
+          <div id="result" style="display: inline-block;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="uk-grid">
+      <div class="uk-width-large-1-3 uk-width-medium-1-3 uk-width-small-1-3 uk-container-center">
+        <form class="uk-form">
+          <div class="uk-form-row">
+            <input type="text" ng-model="result.title" class="uk-width-1-1" /> </div>
+          <div class="uk-form-row">
+            <input type="text" ng-model="result.subtitle" class="uk-width-1-1" />
+          </div>
+
+
+
+          <div class="uk-form-row">
+            <button class="uk-button uk-button-primary" id="download"> Download ภาพนี้ </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+
+    <div class="uk-grid">
+      <div class="uk-width-1-5 uk-width-small-1-5 uk-width-large-1-6 " ng-click="selectTheme(0)">
+        <div class="uk-thumbnail">
+          <img src="images/b.jpg">
+          <div class="uk-thumbnail-caption">#แบบที่1 </div>
+        </div>
+
+      </div>
+      <div class="uk-width-1-5 uk-width-small-1-5 uk-width-large-1-6 " ng-click="selectTheme(1)">
+
+        <div class="uk-thumbnail">
+          <img src="images/db.jpg">
+          <div class="uk-thumbnail-caption">#แบบที่2 </div>
+        </div>
+
+      </div>
+
+      <div class="uk-width-1-5 uk-width-small-1-5 uk-width-large-1-6 " ng-click="selectTheme(2)">
+
+        <div class="uk-thumbnail">
+          <img src="images/y.jpg" class="">
+          <div class="uk-thumbnail-caption">#แบบที่3 </div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-2-4">
+        <div class="fb-like" data-href="" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+        <div class="fb-share-button" data-href="" data-layout="button_count"></div>
+        <a class="twitter-share-button" data-counturl="">
+            Tweet
+        </a>
+      </div>
+    </div>
+
+    <div class="uk-grid">
+      <div class="uk-width-2-4">
+        <canvas id="fontCanvas" style="opacity:0;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
+  <script src="bower_components/ngAnimate-animate.css/animate.js"></script>
+  <script src="bower_components/ngFitText/src/ng-FitText.js"></script>
+  <script src="profile-app.js"></script>
+  <script src="ig-app.js"></script>
+</body>
+
+</html>
