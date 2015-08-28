@@ -4,7 +4,7 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     $scope.indexOfCover = 0;
     $scope.result = {
         title:'อัพเตส กันหน่อย!!',
-        subtitle:'เกรียนๆมัน ฮาๆ ตามประสา',
+        subtitle:'เกรียนๆมัน ฮาๆ',
         msg:""
     };
     $scope.templateSize = {x:612,y:612};
@@ -54,7 +54,7 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     // };
 
     $scope.downloadImage = function(){
-        downloadCanvas(this, 'resultCanvas', 'cover-freelance.png');
+        downloadCanvas(this, 'resultCanvas', 'cover-football.png');
     };
 
     $scope.redraw = function(index){
@@ -108,7 +108,7 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
                  ctx.fillText(text, centerPos.x, centerPos.y - 30 );
              }
          }
-        
+
          ctx.font = "normal 42px MAX_PINJOHN";
          var subText = $scope.result.subtitle;
          var subtextWidth = (ctx.measureText(subText).width);
@@ -195,7 +195,6 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
      };
 
      setTimeout(function(){
-         console.log('ฮั่นแน่ ใครมาแอบอ่าน'+IsLoadedFonts('MAX_PINJOHN'));
          if(!IsLoadedFonts('MAX_PINJOHN')){
 
          }
@@ -203,7 +202,7 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
      getLoginStatus();
 
     document.getElementById('download').addEventListener('click', function() {
-        downloadCanvas(this, 'resultCanvas', 'freelance-cover.png');
+        downloadCanvas(this, 'resultCanvas', 'football.png');
     }, false);
 });//end angular script
 
