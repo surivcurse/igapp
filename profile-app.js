@@ -45,7 +45,7 @@ app.controller('profileController',function($scope,Facebook,$timeout,$http){
                         console.log(newVal);
                         $scope.redraw();
                     }, true);
-                    $scope.selectProfilePicture()
+                    $scope.selectProfilePicture();
                 });
             } else {
                 $scope.isLogin = LoginStatus.logout;
