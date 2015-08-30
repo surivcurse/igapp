@@ -7,39 +7,37 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     subtitle: 'เกรียนๆมัน ฮาๆ',
     msg: ""
   };
-  $scope.templateSize = {
-    x: 612,
-    y: 612
-  };
+
+  var templateSize = [{
+    x: 640,
+    y: 640
+  }, {
+    x: 851,
+    y: 314
+  }];
 
   $scope.templateIndex = 0;
   $scope.selectOnHTMLindex = 0;
 
-  var coverSize = {
-    x: 612,
-    y: 612
-  };
-
+  var coverSize = [{
+    x: 640,
+    y: 640
+  }, {
+    x: 851,
+    y: 314
+  }];
   var coversProperty = [{
-      backgroundImage: "images/b.jpg",
-      primaryColor: "black",
-      secondaryColor: "#DEBB2C",
-      focusFrameColor: "#FF0000"
-    }, {
-      backgroundImage: "images/db.jpg",
-      background2: "#F7F3F3",
-      primaryColor: "#2D3F66",
-      secondaryColor: "#F7F3F3"
-    }, {
-      backgroundImage: "images/y.jpg",
-      background2: "#F7F3F3",
-      primaryColor: "#2D3F66",
-      secondaryColor: "#F7F3F3"
-    }
-
-  ];
+    backgroundImage: "images/b.jpg",
+    primaryColor: "black",
+    secondaryColor: "#DEBB2C",
+  }, {
+    backgroundImage: "images/zigo.jpg",
+    primaryColor: "black",
+    secondaryColor: "#DEBB2C"
+  }];
 
   var bg = new Image();
+
 
 
   $scope.selectTheme = function(index) {
@@ -65,23 +63,39 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
   };
 
   var drawBackground = function(onComplete) {
+    canvas = document.getElementById('resultCanvas'); //change dimension after choose
     bg.src = coversProperty[$scope.indexOfCover].backgroundImage;
-    bg.width = 612;
-    bg.height = 612;
-    ctx.drawImage(bg, 0, 0);
+    if (bg.width > 640) {
+      canvas.width = 851;
+      canvas.height = 314;
+      coverSize.x = 851;
+      coverSize.y = 314;
+    } else {
+      canvas.width = 640;
+      canvas.height = 640;
+      coverSize.x = 640;
+      coverSize.y = 640;
+    }
+
+    ctx.drawImage(bg, 0, 0, templateSize[$scope.indexOfCover].x, templateSize[$scope.indexOfCover].y);
     if (onComplete) {
       onComplete();
     }
   };
 
   var drawText = function(onComplete) {
+
     var shiftY = 0;
 
-    var centerPos = {
-      x: coverSize.x / 2,
-      y: coverSize.y / 2 + shiftY
-    };
+    // var centerPos = {
+    //   x: coverSize.x / 2,
+    //   y: coverSize.y / 2 + shiftY
+    // };
 
+    var centerPos = {
+      x: templateSize[$scope.templateIndex].x / 2,
+      y: templateSize[$scope.templateIndex].y / 2 + shiftY
+    };
 
     var text = $scope.result.title;
     ctx.fillStyle = coversProperty[$scope.indexOfCover].primaryColor;
@@ -95,14 +109,14 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     var textWidth = (ctx.measureText(text).width);
 
 
-    if (textWidth > coverSize.x) {
+    if (textWidth > templateSize[$scope.templateIndex].x) {
       var fontsize = 138;
-      while (textWidth > coverSize.x - 80) {
+      while (textWidth > templateSize[$scope.templateIndex].x - 80) {
         ctx.font = "normal " + fontsize + "px MAX_PINJOHN";
         fontsize -= 2;
         textWidth = (ctx.measureText(text).width);
 
-        if (textWidth < coverSize.x - 80) {
+        if (textWidth < templateSize[$scope.templateIndex].x - 80) {
           ctx.fillText(text, centerPos.x, centerPos.y - 30);
         }
       }
@@ -160,7 +174,8 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
 
 
   var setDimension = function() {
-    coverSize = $scope.templateSize;
+    coverSize = templateSize[$scope.templateIndex];
+    console.log(coverSize);
     if (window.devicePixelRatio == 2 || true) {
       c.width = coverSize.x * 2;
       c.height = coverSize.y * 2;
