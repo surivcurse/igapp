@@ -233,9 +233,9 @@ html, body {
   margin: auto;
   line-height: 1;
   height: 100vh;
-  padding: 10px;
+  /*padding: 10px;*/
+  padding-top:10px;
   text-align: center;
-  /*background: url("../images/freelance-fb.jpg");*/
   background-color: grey;
   background-size: cover;
 }
@@ -338,7 +338,7 @@ html, body {
   }
 }
 #content_container .content .wrap {
-  padding: 0.25em;
+  /*padding: 0.25em;*/
 }
 @media (max-width: 780px) {
   #content_container .content .wrap {
@@ -360,7 +360,8 @@ html, body {
   #content_container .content {
     max-width: 1280px;
     display: inline-block;
-    padding: 80px 120px 80px 120px;
+    /*padding: 80px 120px 80px 120px;*/
+    padding: 0px 120px 80px 120px;
   }
   #content_container .content:after {
     position: absolute;
@@ -461,12 +462,14 @@ textarea {
 }
 .mock-container {
   width: 100%;
-  padding-top: 80px;
-  margin-bottom: 70px;
+  /*padding-top: 5px;*/
+  padding-top: 0px;
+  /*margin-bottom: 70px;*/
 }
 @media (max-width: 780px) {
   .mock-container {
-    padding-top: 5px;
+    /*padding-top: 5px;*/
+    padding-top: 0px;
     margin-bottom: 40px;
   }
 }

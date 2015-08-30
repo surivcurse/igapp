@@ -108,7 +108,8 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
 
     if (textWidth > templateSize[$scope.templateIndex].x) {
       var fontsize = 138;
-      while (textWidth > templateSize[$scope.templateIndex].x - 80) {
+      while (textWidth > templateSize[$scope.templateIndex].x - 80) {//80
+
         ctx.font = "normal " + fontsize + "px MAX_PINJOHN";
         fontsize -= 2;
         textWidth = (ctx.measureText(text).width);
@@ -125,7 +126,7 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
 
       if ($scope.indexOfCover == 1) {
         ctx.fillStyle = "white";
-        ctx.fillText(text, centerPos.x, centerPos.y - 7);//default 32
+        ctx.fillText(text, centerPos.x, centerPos.y - 32);//default 32
       } else {
         ctx.fillStyle = "white";
         ctx.fillText(text, centerPos.x, centerPos.y - 30);
@@ -139,8 +140,8 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     ctx.beginPath();
 
     if (bg.width > 640) {
-      recY = centerPos.y + 30
-      txtY = centerPos.y + 65;
+      recY = centerPos.y  - 10
+      txtY = centerPos.y + 20;
     } else {
       recY = centerPos.y + 5;
       txtY = centerPos.y + 40;
@@ -186,7 +187,6 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
 
   var setDimension = function() {
     coverSize = templateSize[$scope.templateIndex];
-    console.log(coverSize);
     if (window.devicePixelRatio == 2 || true) {
       c.width = coverSize.x * 2;
       c.height = coverSize.y * 2;
