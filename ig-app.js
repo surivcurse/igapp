@@ -27,11 +27,11 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     y: 314
   }];
   var coversProperty = [{
-    backgroundImage: "images/b.jpg",
+    backgroundImage: "images/zigoig.jpg",
     primaryColor: "black",
     secondaryColor: "#DEBB2C",
   }, {
-    backgroundImage: "images/zigo.jpg",
+    backgroundImage: "images/zigocover.jpg",
     primaryColor: "black",
     secondaryColor: "#DEBB2C"
   }];
@@ -86,15 +86,12 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
   var drawText = function(onComplete) {
 
     var shiftY = 0;
-
-    // var centerPos = {
-    //   x: coverSize.x / 2,
-    //   y: coverSize.y / 2 + shiftY
-    // };
+    var recY = 0;
+    var txtY = 0;
 
     var centerPos = {
-      x: templateSize[$scope.templateIndex].x / 2,
-      y: templateSize[$scope.templateIndex].y / 2 + shiftY
+      x: coverSize.x / 2,
+      y: coverSize.y / 2 + shiftY
     };
 
     var text = $scope.result.title;
@@ -116,16 +113,21 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
         fontsize -= 2;
         textWidth = (ctx.measureText(text).width);
 
+
         if (textWidth < templateSize[$scope.templateIndex].x - 80) {
+          ctx.fillStyle = "white";
           ctx.fillText(text, centerPos.x, centerPos.y - 30);
         }
       }
 
     } else {
 
+
       if ($scope.indexOfCover == 1) {
-        ctx.fillText(text, centerPos.x, centerPos.y - 32);
+        ctx.fillStyle = "white";
+        ctx.fillText(text, centerPos.x, centerPos.y - 7);//default 32
       } else {
+        ctx.fillStyle = "white";
         ctx.fillText(text, centerPos.x, centerPos.y - 30);
       }
     }
@@ -135,11 +137,20 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     var subtextWidth = (ctx.measureText(subText).width);
     var rectHeight = 46;
     ctx.beginPath();
-    ctx.rect((centerPos.x - subtextWidth / 2) - 20, centerPos.y + 5, subtextWidth + 40, rectHeight);
+
+    if (bg.width > 640) {
+      recY = centerPos.y + 30
+      txtY = centerPos.y + 65;
+    } else {
+      recY = centerPos.y + 5;
+      txtY = centerPos.y + 40;
+    }
+
+    ctx.rect((centerPos.x - subtextWidth / 2) - 20, recY, subtextWidth + 40, rectHeight);
     ctx.fillStyle = coversProperty[$scope.indexOfCover].primaryColor;
     ctx.fill();
     ctx.fillStyle = coversProperty[$scope.indexOfCover].secondaryColor;
-    ctx.fillText(subText, centerPos.x, centerPos.y + 40);
+    ctx.fillText(subText, centerPos.x, txtY);
 
   }
 
