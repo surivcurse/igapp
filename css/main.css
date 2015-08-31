@@ -37,7 +37,7 @@
 /*ie6*/
 
 #content_container {
-  display: table-cell;
+  /*display: table-cell;*/
   vertical-align: middle;
 }
 *:first-child + html #content_container {
@@ -113,6 +113,7 @@ html, body {
 #page {
   height: 100%;
   width: 100%;
+  background-color: grey;
 }
 .folder {
   width: 169px;

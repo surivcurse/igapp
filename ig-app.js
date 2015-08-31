@@ -116,6 +116,11 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
 
 
         if (textWidth < templateSize[$scope.templateIndex].x - 80) {
+          ctx.shadowColor = "black";
+          ctx.shadowOffsetX = 4;
+          ctx.shadowOffsetY = 4;
+          ctx.shadowBlur =10;
+
           ctx.fillStyle = "white";
           ctx.fillText(text, centerPos.x, centerPos.y - 30);
         }
@@ -125,9 +130,19 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
 
 
       if ($scope.indexOfCover == 1) {
+        ctx.shadowColor = "black";
+        ctx.shadowOffsetX = 4;
+        ctx.shadowOffsetY = 4;
+        ctx.shadowBlur =10;
+
         ctx.fillStyle = "white";
         ctx.fillText(text, centerPos.x, centerPos.y - 32);//default 32
       } else {
+        ctx.shadowColor = "black";
+        ctx.shadowOffsetX = 4;
+        ctx.shadowOffsetY = 4;
+        ctx.shadowBlur =10;
+
         ctx.fillStyle = "white";
         ctx.fillText(text, centerPos.x, centerPos.y - 30);
       }
