@@ -33,24 +33,7 @@
     ga('create', 'UA-66889611-1', 'auto');
     ga('send', 'pageview');
   </script>
-  <script>
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
 
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));
-  </script>
 
   <style>
     @font-face {
@@ -73,8 +56,12 @@
           <div style="margin-bottom:10px;text-align:center">
           </div>
 
-          <input type="text" ng-model="result.title" class="titleInput" />
-          <input type="text" ng-model="result.subtitle" class="titleInput" />
+          <label for="title">คาถาเชียร์ช้างศึก</label>
+          <input name="title" type="text" ng-model="result.title" class="titleInput" />
+
+          <label for="subtitle" >คำแนะนำทีมช้างศึก</label>
+          <input name="subtitle" type="text" ng-model="result.subtitle" class="titleInput" />
+
           <a class="fb button" id="download"> Download ภาพนี้ </a>
 
         </div>
@@ -100,6 +87,11 @@
       </div>
 
       <canvas id="fontCanvas" style="opacity:0;"></canvas>
+
+
+      <div class="social-box">
+
+      </div>
     </div>
   </div>
 

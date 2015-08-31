@@ -3,8 +3,8 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
   $scope.loadingText = "loading";
   $scope.indexOfCover = 0;
   $scope.result = {
-    title: 'อัพเตส กันหน่อย!!',
-    subtitle: 'เกรียนๆมัน ฮาๆ',
+    title: 'รับแน่น กลางนิ่ง หน้าคม',
+    subtitle: 'ไม่ว่าเจอทีมไหนเรารวมใจเป็นหนึ่ง สู้ได้ทุกทีม...',
     msg: ""
   };
 
@@ -29,16 +29,14 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
   var coversProperty = [{
     backgroundImage: "images/zigoig.jpg",
     primaryColor: "black",
-    secondaryColor: "#DEBB2C",
+    secondaryColor: "white", //#DEBB2C
   }, {
     backgroundImage: "images/zigocover.jpg",
     primaryColor: "black",
-    secondaryColor: "#DEBB2C"
+    secondaryColor: "white"
   }];
 
   var bg = new Image();
-
-
 
   $scope.selectTheme = function(index) {
     $scope.indexOfCover = index;
@@ -99,63 +97,74 @@ app.controller('igController', function($scope, Facebook, $timeout, $interval) {
     ctx.textAlign = 'center';
     ctx.lineWidth = 1;
 
-    ctx.font = "normal 96px MAX_PINJOHN";
+    ctx.font = "bold 96px MAX_PINJOHN";
     if ($scope.indexOfCover == 1) {
-      ctx.font = "normal 106px MAX_PINJOHN";
+      ctx.font = "bold 80px MAX_PINJOHN"; //106
     }
     var textWidth = (ctx.measureText(text).width);
 
+    //for cover
+    var shift = 0
+    if (bg.width > 640) {
+       shift = 210;
+    }
 
-    if (textWidth > templateSize[$scope.templateIndex].x) {
+    if ((textWidth + shift) > coverSize.x) {
       var fontsize = 138;
-      while (textWidth > templateSize[$scope.templateIndex].x - 80) {//80
-
-        ctx.font = "normal " + fontsize + "px MAX_PINJOHN";
+      while ((textWidth + shift) > coverSize.x - 80) {
+        ctx.font = "bold " + fontsize + "px MAX_PINJOHN";
         fontsize -= 2;
         textWidth = (ctx.measureText(text).width);
 
 
-        if (textWidth < templateSize[$scope.templateIndex].x - 80) {
+        if (textWidth < coverSize.x - (80 + shift)) { //80
           ctx.shadowColor = "black";
           ctx.shadowOffsetX = 4;
           ctx.shadowOffsetY = 4;
-          ctx.shadowBlur =10;
-
+          ctx.shadowBlur = 10;
           ctx.fillStyle = "white";
-          ctx.fillText(text, centerPos.x, centerPos.y - 30);
+          ctx.fillText(text, centerPos.x, centerPos.y - 30); //30
         }
       }
 
     } else {
-
-
       if ($scope.indexOfCover == 1) {
         ctx.shadowColor = "black";
         ctx.shadowOffsetX = 4;
         ctx.shadowOffsetY = 4;
-        ctx.shadowBlur =10;
+        ctx.shadowBlur = 10;
 
         ctx.fillStyle = "white";
-        ctx.fillText(text, centerPos.x, centerPos.y - 32);//default 32
+        ctx.fillText(text, centerPos.x, centerPos.y - 25); //32
       } else {
         ctx.shadowColor = "black";
         ctx.shadowOffsetX = 4;
         ctx.shadowOffsetY = 4;
-        ctx.shadowBlur =10;
+        ctx.shadowBlur = 10;
 
         ctx.fillStyle = "white";
-        ctx.fillText(text, centerPos.x, centerPos.y - 30);
+        ctx.fillText(text, centerPos.x, centerPos.y - 25); //30
       }
     }
 
+
     ctx.font = "normal 42px MAX_PINJOHN";
+    if (bg.width > 640) { //for cover
+      ctx.font = "normal 38px MAX_PINJOHN";
+    }
+
     var subText = $scope.result.subtitle;
     var subtextWidth = (ctx.measureText(subText).width);
     var rectHeight = 46;
+
+    if (bg.width > 640) {
+      rectHeight = 38;
+    }
+
     ctx.beginPath();
 
     if (bg.width > 640) {
-      recY = centerPos.y  - 10
+      recY = centerPos.y - 10
       txtY = centerPos.y + 20;
     } else {
       recY = centerPos.y + 5;

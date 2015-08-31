@@ -356,6 +356,10 @@ html, body {
     display: inline-block;
     /*padding-top: 50px;*/
   }
+  #content_container .content .wrap label {
+    font-size: 18px;
+    color: white;
+  }
 }
 @media (min-width: 780px) {
   #content_container .content {
@@ -364,6 +368,7 @@ html, body {
     /*padding: 80px 120px 80px 120px;*/
     padding: 0px 120px 80px 120px;
   }
+
   #content_container .content:after {
     position: absolute;
     width: 320px;
@@ -376,6 +381,11 @@ html, body {
     background-repeat: no-repeat;
     background-position: 98% 100%;
   }
+  #content_container .content .wrap label {
+    font-size: 20px;
+    color:white;
+  }
+
 }
 #content_container .result-container {
   position: relative;
